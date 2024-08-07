@@ -1,0 +1,29 @@
+= Hello!
+
+Remember to have fun!
+
+== Quickstart
+
+To get started, try
+
+```
+make fork
+```
+
+and follow the instructions.
+
+== Infrastructure requirements
+
+You need a local infrastructure _a la_
+https://github.com/org-tekeli-borisp/ansible-funtoo, referred to here as the
+library.  This repository may not be very useful otherwise.
+
+You need a Github account, and you need to set up `github-cli` to a working
+state.  You should be able to create and delete a test repository in the
+location where you want to put your fork.  The interesting commands are
+described in `gh repo --help`.
+
+The sources (`kit-fixups`, and the so-called "sourced kits" like
+`kde-kit-sources` and friends) are not handled here.  Currently, `metatools`
+does not have an easy way to mirror those, other than `kit-fixups`.  Your
+local infrastructure already takes care of `kit-fixups`.

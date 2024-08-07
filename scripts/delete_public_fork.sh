@@ -2,7 +2,7 @@
 
 owner=${FORK_OWNER:-kitz0rsoft}
 
-if [ "$1" != "" ]; then
+if [[ $# == 1 ]] &&  [[ "$1" != "" ]]; then
     echo Setting org to "$1"
     owner="$1"
 fi

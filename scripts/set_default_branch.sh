@@ -3,7 +3,7 @@
 owner=${FORK_OWNER:-kitz0rsoft}
 branch="${FORK_BRANCH:-next}"
 
-if [ "$1" != "" ]; then
+if [[ $# == 1 ]] &&  [[ "$1" != "" ]]; then
     echo Setting owner to "$1"
     owner="$1"
 fi
