@@ -15,6 +15,19 @@ and follow the instructions.
 Note that currently it is assumed that your Github user (or organization) will
 be the same as the local fork owner.
 
+== Purpose
+
+The tools in this repository can be used to
+  - create the `*-kits` to which your local infrastructure can push ebuilds,
+  - change their default branches _en masse` or individually,
+  - keep a fork up-to-date with upstream (_e.g._ in a `cron` job),
+  - and delete forks that are no longer needed.
+
+Using these tools, you can create a Macaroni Linux
+(https://github.com/macaroni-os) dev fork with public kits at Github that can
+be used to sync any Macaroni Linux system.  Once a feature is stable, it is
+easy to upstream it with a `kit-fixups` mirror at Github.
+
 == Infrastructure requirements
 
 You need a local infrastructure _a la_
