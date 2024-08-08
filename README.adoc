@@ -12,9 +12,6 @@ make fork
 
 and follow the instructions.
 
-Note that currently it is assumed that your Github user (or organization) will
-be the same as the local fork owner.
-
 == Purpose
 
 The tools in this repository can be used to
