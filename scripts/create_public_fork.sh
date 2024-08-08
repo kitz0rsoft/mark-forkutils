@@ -1,7 +1,7 @@
 #!/bin/bash
 
 downstream_owner=${FORK_OWNER_DOWNSTREAM:-kitz0rsoft}
-upstream_owner="${FORK_OWNER_UPSTREAM:-macaroni-os}"
+upstream_owner="${FORK_GITHUB_OWNER_UPSTREAM:-macaroni-os}"
 
 if [ "$1" != "" ]; then
     echo Setting org to "$1"

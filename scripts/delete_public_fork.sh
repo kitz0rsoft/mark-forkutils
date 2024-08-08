@@ -8,6 +8,6 @@ if [[ $# == 1 ]] &&  [[ "$1" != "" ]]; then
 fi
 
 for repo in $(<repos.txt); do
-    echo "Lighting repo $downstream_owner/$repo on fire!"
+    printf "\033[31mLighting repo\033[0m \033[33m%s\033[0m \033[31mon fire!\033[0m\n" "$downstream_owner/$repo"
     gh repo delete --yes "$downstream_owner/$repo"
 done

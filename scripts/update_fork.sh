@@ -6,22 +6,21 @@ if [[ -z "$FORK_LIBRARY_USER" ]] || [[ -z "$FORK_LIBRARY_TOKEN" ]]; then
 	exit 66
 fi
 
-user="$FORK_LIBRARY_USER"
-cred="$FORK_LIBRARY_TOKEN"
-upstream_owner="${FORK_OWNER_UPSTREAM:-mirror-core}"
-upstream_remote="${FORK_REMOTE_NAME_UPSTREAM:-upstream}"
-fork="${FORK_OWNER_DOWNSTREAM:-kitz0rsoft}"
-library="${FORK_LIBRARY:-library.edoras.riddermark}"
-merge_dir="${FORK_MERGE_DIR:-$HOME/merging/${fork}}"
+user=$FORK_LIBRARY_USER
+cred=$FORK_LIBRARY_TOKEN
+upstream_owner=${FORK_LIBRARY_OWNER_UPSTREAM:-mirror-core}
+upstream_remote=${FORK_REMOTE_NAME_UPSTREAM:-upstream}
+fork=${FORK_OWNER_DOWNSTREAM:-kitz0rsoft}
+library=${FORK_LIBRARY:-library.edoras.riddermark}
+merge_dir=${FORK_MERGE_DIR:-$HOME/merging/${fork}}
 
 remote_branch="master"
-repo="kit_fixups"
+repo="kit-fixups"
 
 # initial setup
 if [[ ! -d "$merge_dir" ]]; then
 	git clone \
-		"https://$user:$cred@$library/$fork/$repo" \
-		"$merge_dir" || exit
+		"https://$user:$cred@$library/$fork/$repo" "$merge_dir" || exit
 	cd "$merge_dir" || exit
 	git remote rename origin "$fork" || exit
 
