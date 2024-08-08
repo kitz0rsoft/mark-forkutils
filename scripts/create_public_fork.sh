@@ -8,8 +8,6 @@ if [ "$1" != "" ]; then
     downstream_owner="$1"
 fi
 
-exit
-
 for repo in $(<repos.txt); do
     echo "Creating repo $downstream_owner/$repo"
     yes Noooo | gh repo fork "$upstream_owner/$repo" "$repo" --org "$downstream_owner"
