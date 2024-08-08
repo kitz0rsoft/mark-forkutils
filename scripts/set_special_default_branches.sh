@@ -1,10 +1,10 @@
 #!/bin/bash
 
-owner="${FORK_OWNER:-kitz0rsoft}"
+downstream_owner="${FORK_OWNER_DOWNSTREAM:-kitz0rsoft}"
 
 if [[ $# == 1 ]] &&  [[ "$1" != "" ]]; then
-    echo Setting owner to "$1"
-    owner="$1"
+    echo Setting downstream owner to "$1"
+    downstream_owner="$1"
 fi
 
 declare -A repos
@@ -17,6 +17,6 @@ repos[xfce-kit]='next-4.16-release'
 for repo in "${!repos[@]}"; do
     branch="${repos[$repo]}"
     echo Setting default branch of $repo to $branch...
-    gh repo edit "$owner/$repo" --default-branch "$branch"
+    gh repo edit "$downstream_owner/$repo" --default-branch "$branch"
 done
 
