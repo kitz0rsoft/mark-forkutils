@@ -1,3 +1,5 @@
+all: fork update
+
 environment: environment.in
 	@printf "\033[32mContents of environment.in:\033[0m\n"
 	@echo
@@ -13,7 +15,8 @@ fork: environment
 	source ./environment && scripts/set_special_default_branches.sh
 
 clean: environment
-	@echo "Removing fork $* momentarily; pausing for reconsideration..."
+	@echo "Removing fork at ${FORK_OWNER_DOWNSTREAM} momentarily;" \
+		" pausing for reconsideration..."
 	sleep 5
 	@echo "Okay done sleeping!  Tearing down the walls and roof..."
 	source ./environment && scripts/delete_public_fork.sh $*
