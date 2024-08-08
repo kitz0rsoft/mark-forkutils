@@ -1,7 +1,7 @@
 #!/bin/bash
 
 downstream_owner=${FORK_OWNER:-kitz0rsoft}
-branch="${FORK_BRANCH:-next}"
+branch="${FORK_DEFAULT_BRANCH:-next}"
 
 if [[ $# == 1 ]] &&  [[ "$1" != "" ]]; then
     echo Setting downstream owner to "$1"
