@@ -14,7 +14,7 @@ fork=${FORK_OWNER_DOWNSTREAM:-kitz0rsoft}
 library=${FORK_LIBRARY:-library.edoras.riddermark}
 merge_dir=${FORK_MERGE_DIR:-$HOME/merging/${fork}}
 
-remote_branch="master"
+remote_branches=("master" "mark-testing")
 repo="kit-fixups"
 
 # initial setup
@@ -35,6 +35,8 @@ fi
 # do the merge
 cd "${merge_dir}" || exit
 git pull || exit
-git fetch "$upstream_remote" || exit
-git merge --no-edit "$upstream_remote/$remote_branch" || exit
-git push "$fork" || exit
+for remote_branch in $remote_branches; do
+	git fetch "$upstream_remote" || exit
+	git merge --no-edit "$upstream_remote/$remote_branch" || exit
+	git push "$fork" || exit
+done

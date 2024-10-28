@@ -10,8 +10,8 @@ environment: environment.in
 	@printf "\033[32mPlease copy environment.in to environment and fill in the\n"
 	@printf "appropriate values for your site.\033[0m\n\n"
 	@echo
-	if [[ -f ./environment ]]; then
-		@printf "\033[32mYour environment file is out of date with upstream.\033[0m"
+	@if [[ -f ./environment ]]; then\
+		printf "\033[31mYour environment file is out of date with upstream.\033[0m\n\n";\
 	fi
 	@false
 
@@ -23,7 +23,7 @@ fork: environment
 clean: environment
 	@echo "Removing fork at ${FORK_OWNER_DOWNSTREAM} momentarily;" \
 		"pausing for reconsideration..."
-	sleep 5
+	@sleep 5
 	@printf "Okay done sleeping! \033[31mTearing down the walls and roof...\033[0m"
 	scripts/delete_public_fork.sh
 

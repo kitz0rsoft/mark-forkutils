@@ -12,11 +12,12 @@ make fork
 
 and follow the instructions.
 
+
 == Purpose
 
 The tools in this repository can be used to
   - create the `*-kits` to which your local infrastructure can push ebuilds,
-  - change their default branches _en masse` or individually,
+  - change their default branches _en masse_ or individually,
   - keep a fork up-to-date with upstream (_e.g._ in a `cron` job),
   - and delete forks that are no longer needed.
 
@@ -28,15 +29,25 @@ easy to upstream it with a `kit-fixups` mirror at Github.
 == Infrastructure requirements
 
 You need a local infrastructure _a la_
-https://github.com/org-tekeli-borisp/ansible-funtoo, referred to here as the
-library.  This repository may not be very useful otherwise.
+https://github.com/org-tekeli-borisp/ansible-funtoo.  The repo container in
+the local infrastructure is referred to here as the library.  This repository
+may not be very useful unless you have M.A.R.K. infrastructrue already
+prepared, so it's a good idea to set that up first.
 
-You need a Github account, and you need to set up `github-cli` to a working
-state.  You should be able to create and delete a test repository in the
-location where you want to put your fork.  The interesting commands are
-described in `gh repo --help`.
+To use these tools:  You need a Github account, and you need to set up
+`github-cli` to a working state.  You should be able to create and delete a
+test repository in the location where you want to put your fork.  The
+interesting commands are described in `gh repo --help`.
 
 The sources (`kit-fixups`, and the so-called "sourced kits" like
 `kde-kit-sources` and friends) are not handled here.  Currently, `metatools`
 does not have an easy way to mirror those, other than `kit-fixups`.  Your
-local infrastructure already takes care of `kit-fixups`.
+local infrastructure already takes care of your mirror of upstream
+`kit-fixups`.  The tools in this repository manage your downstream fork.
+
+
+== Updating a fork
+
+.Merging from upstream and pushing the changes to the fork
+By default, both the `master` branch (`next` release) and the `mark-testing`
+branch will be managed.  
