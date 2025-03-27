@@ -14,7 +14,13 @@ fork=${FORK_OWNER_DOWNSTREAM:-kitz0rsoft}
 library=${FORK_LIBRARY:-library.edoras.riddermark}
 merge_dir=${FORK_MERGE_DIR:-$HOME/merging/${fork}}
 
-remote_branches=("master" "mark-testing")
+declare -A releases
+releases['next']='master'
+releases['mark-testing']='mark-testing'
+releases['mark-unstable']='mark-unstable'
+releases['mark-xl']='mark-xl'
+releases['mark-iii']='mark-iii'
+
 repo="kit-fixups"
 
 # initial setup
@@ -24,9 +30,20 @@ if [[ ! -d "$merge_dir" ]]; then
 	cd "$merge_dir" || exit
 	git remote rename origin "$fork" || exit
 
+	# get list of branches and other metadata for fork remote
+	git fetch "$fork" || exit
+
+	# check out branches for active releases
+	for rel in "${releases[@]}"; do
+		git checkout -b "$rel" --track "$fork/${releases[$rel]}" || exit
+	done
+
 	# intentionally neglect credentials, to avoid unwanted pushes upstream
 	git remote add "$upstream_remote" \
 		"https://$library/$upstream_owner/$repo" || exit
+
+	# get list of branches and other metadata for upstream remote
+	git fetch "$upstream_remote" || exit
 
 	# don't rebase, to keep merge commits in the tree
 	git config pull.rebase false || exit
@@ -35,8 +52,9 @@ fi
 # do the merge
 cd "${merge_dir}" || exit
 git pull || exit
-for remote_branch in $remote_branches; do
+for rel in "${releases[@]}"; do
+	git checkout "$rel" || exit
 	git fetch "$upstream_remote" || exit
-	git merge --no-edit "$upstream_remote/$remote_branch" || exit
+	git merge --no-edit "$upstream_remote/$rel" || exit
 	git push "$fork" || exit
 done
