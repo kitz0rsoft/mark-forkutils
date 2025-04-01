@@ -12,15 +12,19 @@ haskell-kit
 i18n-kit
 java-kit
 kde-kit
+kernel-kit
 lang-kit
 lisp-scheme-kit
 llvm-kit
 mate-kit
+mark-kit
 media-kit
 meta-repo
 ml-lang-kit
 net-kit
 perl-kit
+php-kit
+portage-kit
 python-kit
 python-modules-kit
 qt-kit
@@ -29,3 +33,4 @@ science-kit
 security-kit
 text-kit
 xfce-kit
+xorg-kit
