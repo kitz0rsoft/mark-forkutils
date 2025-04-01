@@ -34,8 +34,9 @@ if [[ ! -d "$merge_dir" ]]; then
 	git fetch "$fork" || exit
 
 	# check out branches for active releases
-	for rel in "${!releases[@]}"; do
-		git checkout -b "$rel" --track "$fork/${releases[$rel]}" || exit
+	for branch in "${releases[@]}"; do
+		[ "$branch" == "mark-testing" ] && continue
+		git checkout -b "$branch" --track "$fork/$branch" || exit
 	done
 
 	# intentionally neglect credentials, to avoid unwanted pushes upstream
@@ -52,9 +53,9 @@ fi
 # do the merge
 cd "${merge_dir}" || exit
 git pull || exit
-for rel in "${releases[@]}"; do
-	git checkout "$rel" || exit
+for branch in "${releases[@]}"; do
+	git checkout $branch || exit
 	git fetch "$upstream_remote" || exit
-	git merge --no-edit "$upstream_remote/$rel" || exit
+	git merge --no-edit "$upstream_remote/$branch" || exit
 	git push "$fork" || exit
 done
