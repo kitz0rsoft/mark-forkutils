@@ -34,7 +34,7 @@ if [[ ! -d "$merge_dir" ]]; then
 	git fetch "$fork" || exit
 
 	# check out branches for active releases
-	for rel in "${releases[@]}"; do
+	for rel in "${!releases[@]}"; do
 		git checkout -b "$rel" --track "$fork/${releases[$rel]}" || exit
 	done
 
