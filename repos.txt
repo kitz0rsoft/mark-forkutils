@@ -1,3 +1,4 @@
+ai-kit
 browser-kit
 core-gl-kit
 core-hw-kit
@@ -6,6 +7,7 @@ core-server-kit
 desktop-kit
 dev-kit
 editors-kit
+forensics-kit
 games-kit
 gnome-kit
 haskell-kit
