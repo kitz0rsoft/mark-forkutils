@@ -21,6 +21,8 @@ releases['mark-unstable']='mark-unstable'
 releases['mark-xl']='mark-xl'
 releases['mark-iii']='mark-iii'
 releases['mark-31']='mark-31'
+releases['mark-v']='mark-v'
+releases['mark-i']='mark-i'
 
 repo="kit-fixups"
 
