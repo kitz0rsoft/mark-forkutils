@@ -60,8 +60,42 @@ for branch in "${releases[@]}"; do
 	git push "$fork" || exit
 done
 
-cd
+cd || exit
 repo="whip-catalog"
+
+echo $user:$cred
+# initial setup
+if [[ ! -d "$merge_dir/$repo" ]]; then
+	git clone \
+		"https://$user:$cred@$library/$fork/$repo" "$merge_dir/$repo" || exit
+	cd "$merge_dir/$repo" || exit
+	git remote rename origin "$fork" || exit
+
+	# get list of branches and other metadata for fork remote
+	git fetch "$fork" || exit
+
+	# intentionally neglect credentials, to avoid unwanted pushes upstream
+	git remote add "$upstream_remote" \
+		"https://$library/$upstream_owner/$repo" || exit
+
+	# get list of branches and other metadata for upstream remote
+	git fetch "$upstream_remote" || exit
+
+	# don't rebase, to keep merge commits in the tree
+	git config pull.rebase false || exit
+fi
+
+# do the merge
+branch='master'
+cd "${merge_dir}/$repo" || exit
+git pull || exit
+git checkout $branch || exit
+git fetch "$upstream_remote" || exit
+git merge --no-edit "$upstream_remote/$branch" || exit
+git push "$fork" || exit
+
+cd || exit
+repo="macaroni-commons"
 
 echo $user:$cred
 # initial setup
